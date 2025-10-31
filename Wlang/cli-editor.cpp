@@ -60,11 +60,11 @@ bool ensureWExtension(string& name) {
 bool loadFile(const string& filename, vector<string>& buffer, string& err) {
     setlocale(LC_ALL, "Russian");
     ifstream in(filename);
-    if (!in) { err = "Не удалось открыть файл для чтения: " + filename; return false; }
+    if (!in) { err = "ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« Г¤Г«Гї Г·ГІГҐГ­ГЁГї: " + filename; return false; }
     buffer.clear();
     string line;
     while (std::getline(in, line)) {
-        // сохраняем строки без CR
+        // Г±Г®ГµГ°Г Г­ГїГҐГ¬ Г±ГІГ°Г®ГЄГЁ ГЎГҐГ§ CR
         if (!line.empty() && line.back() == '\r') line.pop_back();
         buffer.push_back(line);
     }
@@ -74,7 +74,7 @@ bool loadFile(const string& filename, vector<string>& buffer, string& err) {
 bool saveFile(const string& filename, const vector<string>& buffer, string& err) {
     setlocale(LC_ALL, "Russian");
     ofstream out(filename);
-    if (!out) { err = "Не удалось открыть файл для записи: " + filename; return false; }
+    if (!out) { err = "ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г®ГІГЄГ°Г»ГІГј ГґГ Г©Г« Г¤Г«Гї Г§Г ГЇГЁГ±ГЁ: " + filename; return false; }
     for (size_t i = 0; i < buffer.size(); ++i) {
         out << buffer[i];
         if (i + 1 < buffer.size()) out << '\n';
@@ -85,21 +85,21 @@ bool saveFile(const string& filename, const vector<string>& buffer, string& err)
 void showHelp() {
     setlocale(LC_ALL, "Russian");
     cout <<
-    "Команды редактора (начинаются с ':'):\n"
-    " :help                 Показать эту справку\n"
-    " :new <file>           Создать новый буфер и установить имя файла\n"
-    " :open <file>          Открыть .w файл в буфере\n"
-    " :save                 Сохранить в текущее имя файла\n"
-    " :saveas <file>        Сохранить в указанное имя\n"
-    " :list                 Показать буфер с номерами строк\n"
-    " :insert <n> <text>    Вставить строку перед номером n (1-based)\n"
-    " :edit <n> <text>      Заменить строку n\n"
-    " :delete <n>           Удалить строку n\n"
-    " :clear                Очистить буфер\n"
-    " :run [fresh]          Запустить буфер (без аргумента — conserva состояние переменных между запусками; 'fresh' — сбросить переменные)\n"
-    " :runfile <file>       Открыть файл и сразу выполнить (без загрузки в буфер)\n"
-    " :exit                 Выйти\n"
-    "Любая строка, не начинающаяся с ':' — добавляется в буфер (append).\n";
+    "ГЉГ®Г¬Г Г­Г¤Г» Г°ГҐГ¤Г ГЄГІГ®Г°Г  (Г­Г Г·ГЁГ­Г ГѕГІГ±Гї Г± ':'):\n"
+    " :help                 ГЏГ®ГЄГ Г§Г ГІГј ГЅГІГі Г±ГЇГ°Г ГўГЄГі\n"
+    " :new <file>           Г‘Г®Г§Г¤Г ГІГј Г­Г®ГўГ»Г© ГЎГіГґГҐГ° ГЁ ГіГ±ГІГ Г­Г®ГўГЁГІГј ГЁГ¬Гї ГґГ Г©Г«Г \n"
+    " :open <file>          ГЋГІГЄГ°Г»ГІГј .w ГґГ Г©Г« Гў ГЎГіГґГҐГ°ГҐ\n"
+    " :save                 Г‘Г®ГµГ°Г Г­ГЁГІГј Гў ГІГҐГЄГіГ№ГҐГҐ ГЁГ¬Гї ГґГ Г©Г«Г \n"
+    " :saveas <file>        Г‘Г®ГµГ°Г Г­ГЁГІГј Гў ГіГЄГ Г§Г Г­Г­Г®ГҐ ГЁГ¬Гї\n"
+    " :list                 ГЏГ®ГЄГ Г§Г ГІГј ГЎГіГґГҐГ° Г± Г­Г®Г¬ГҐГ°Г Г¬ГЁ Г±ГІГ°Г®ГЄ\n"
+    " :insert <n> <text>    Г‚Г±ГІГ ГўГЁГІГј Г±ГІГ°Г®ГЄГі ГЇГҐГ°ГҐГ¤ Г­Г®Г¬ГҐГ°Г®Г¬ n (1-based)\n"
+    " :edit <n> <text>      Г‡Г Г¬ГҐГ­ГЁГІГј Г±ГІГ°Г®ГЄГі n\n"
+    " :delete <n>           Г“Г¤Г Г«ГЁГІГј Г±ГІГ°Г®ГЄГі n\n"
+    " :clear                ГЋГ·ГЁГ±ГІГЁГІГј ГЎГіГґГҐГ°\n"
+    " :run [fresh]          Г‡Г ГЇГіГ±ГІГЁГІГј ГЎГіГґГҐГ° (ГЎГҐГ§ Г Г°ГЈГіГ¬ГҐГ­ГІГ  вЂ” conserva Г±Г®Г±ГІГ®ГїГ­ГЁГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ Г¬ГҐГ¦Г¤Гі Г§Г ГЇГіГ±ГЄГ Г¬ГЁ; 'fresh' вЂ” Г±ГЎГ°Г®Г±ГЁГІГј ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ)\n"
+    " :runfile <file>       ГЋГІГЄГ°Г»ГІГј ГґГ Г©Г« ГЁ Г±Г°Г Г§Гі ГўГ»ГЇГ®Г«Г­ГЁГІГј (ГЎГҐГ§ Г§Г ГЈГ°ГіГ§ГЄГЁ Гў ГЎГіГґГҐГ°)\n"
+    " :exit                 Г‚Г»Г©ГІГЁ\n"
+    "Г‹ГѕГЎГ Гї Г±ГІГ°Г®ГЄГ , Г­ГҐ Г­Г Г·ГЁГ­Г ГѕГ№Г ГїГ±Гї Г± ':' вЂ” Г¤Г®ГЎГ ГўГ«ГїГҐГІГ±Гї Гў ГЎГіГґГҐГ° (append).\n";
 }
 
 void listBuffer(const vector<string>& buffer) {
@@ -116,7 +116,7 @@ int main() {
     unordered_map<string, int> vars;
     unordered_map<string, string> stringVars;
     setlocale(LC_ALL, "Russian");
-    cout << "W-language CLI editor. Введите :help для справки.\n";
+    cout << "W-language CLI editor. Г‚ГўГҐГ¤ГЁГІГҐ :help Г¤Г«Гї Г±ГЇГ°Г ГўГЄГЁ.\n";
 
     string input;
     while (true) {
@@ -126,7 +126,7 @@ int main() {
         if (line.empty()) continue;
 
         if (line[0] == ':') {
-            // команда
+            // ГЄГ®Г¬Г Г­Г¤Г 
             istringstream iss(line);
             string cmd;
             iss >> cmd; // fafpjfasjfsafjfjsafjsafjsafjsai
@@ -140,7 +140,7 @@ int main() {
                 buffer.clear();
                 currentFile = name;
                 dirty = true;
-                cout << "Новый буфер, файл: " << currentFile << '\n';
+                cout << "ГЌГ®ГўГ»Г© ГЎГіГґГҐГ°, ГґГ Г©Г«: " << currentFile << '\n';
             }
             else if (cmd == ":open") {
                 string name;
@@ -150,17 +150,17 @@ int main() {
                 if (loadFile(name, buffer, err)) {
                     currentFile = name;
                     dirty = false;
-                    cout << "Файл загружен: " << currentFile << " (" << buffer.size() << " строк)\n";
+                    cout << "Г”Г Г©Г« Г§Г ГЈГ°ГіГ¦ГҐГ­: " << currentFile << " (" << buffer.size() << " Г±ГІГ°Г®ГЄ)\n";
                 } else {
                     cout << err << '\n';
                 }
             }
             else if (cmd == ":save") {
-                if (currentFile.empty()) { cout << "Нет текущего имени файла. Используйте :saveas <file>\n"; continue; }
+                if (currentFile.empty()) { cout << "ГЌГҐГІ ГІГҐГЄГіГ№ГҐГЈГ® ГЁГ¬ГҐГ­ГЁ ГґГ Г©Г«Г . Г€Г±ГЇГ®Г«ГјГ§ГіГ©ГІГҐ :saveas <file>\n"; continue; }
                 string err;
                 if (saveFile(currentFile, buffer, err)) {
                     dirty = false;
-                    cout << "Сохранено в " << currentFile << '\n';
+                    cout << "Г‘Г®ГµГ°Г Г­ГҐГ­Г® Гў " << currentFile << '\n';
                 } else cout << err << '\n';
             }
             else if (cmd == ":saveas") {
@@ -171,7 +171,7 @@ int main() {
                 if (saveFile(name, buffer, err)) {
                     currentFile = name;
                     dirty = false;
-                    cout << "Сохранено в " << currentFile << '\n';
+                    cout << "Г‘Г®ГµГ°Г Г­ГҐГ­Г® Гў " << currentFile << '\n';
                 } else cout << err << '\n';
             }
             else if (cmd == ":list") {
@@ -183,7 +183,7 @@ int main() {
                 string text;
                 getline(iss, text);
                 text = trim(text);
-                if (n < 1 || n > (int)buffer.size() + 1) { cout << "Неверный индекс\n"; continue; }
+                if (n < 1 || n > (int)buffer.size() + 1) { cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГЁГ­Г¤ГҐГЄГ±\n"; continue; }
                 buffer.insert(buffer.begin() + (n - 1), text);
                 dirty = true;
             }
@@ -193,14 +193,14 @@ int main() {
                 string text;
                 getline(iss, text);
                 text = trim(text);
-                if (n < 1 || n > (int)buffer.size()) { cout << "Неверный индекс\n"; continue; }
+                if (n < 1 || n > (int)buffer.size()) { cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГЁГ­Г¤ГҐГЄГ±\n"; continue; }
                 buffer[n - 1] = text;
                 dirty = true;
             }
             else if (cmd == ":delete") {
                 int n;
                 if (!(iss >> n)) { cout << "Usage: :delete <n>\n"; continue; }
-                if (n < 1 || n > (int)buffer.size()) { cout << "Неверный индекс\n"; continue; }
+                if (n < 1 || n > (int)buffer.size()) { cout << "ГЌГҐГўГҐГ°Г­Г»Г© ГЁГ­Г¤ГҐГЄГ±\n"; continue; }
                 buffer.erase(buffer.begin() + (n - 1));
                 dirty = true;
             }
@@ -217,12 +217,12 @@ int main() {
                     vars.clear();
                     stringVars.clear();
                 }
-                // выполняем строки по порядку
+                // ГўГ»ГЇГ®Г«Г­ГїГҐГ¬ Г±ГІГ°Г®ГЄГЁ ГЇГ® ГЇГ®Г°ГїГ¤ГЄГі
                 for (const auto& ln : buffer) {
                     executeCommand(ln, vars, stringVars);
                     if (ln == "end") break;
                 }
-                cout << "Выполнение завершено\n";
+                cout << "Г‚Г»ГЇГ®Г«Г­ГҐГ­ГЁГҐ Г§Г ГўГҐГ°ГёГҐГ­Г®\n";
             }
             else if (cmd == ":runfile") {
                 string name;
@@ -237,27 +237,27 @@ int main() {
                     executeCommand(ln, tmpVars, tmpStringVars);
                     if (ln == "end") break;
                 }
-                cout << "Выполнение файла " << name << " завершено\n";
+                cout << "Г‚Г»ГЇГ®Г«Г­ГҐГ­ГЁГҐ ГґГ Г©Г«Г  " << name << " Г§Г ГўГҐГ°ГёГҐГ­Г®\n";
             }
             else if (cmd == ":exit") {
                 if (dirty) {
-                    cout << "Есть несохранённые изменения. Выйти без сохранения? (y/N): ";
+                    cout << "Г…Г±ГІГј Г­ГҐГ±Г®ГµГ°Г Г­ВёГ­Г­Г»ГҐ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї. Г‚Г»Г©ГІГЁ ГЎГҐГ§ Г±Г®ГµГ°Г Г­ГҐГ­ГЁГї? (y/N): ";
                     string a; getline(cin, a);
                     if (a != "y" && a != "Y") continue;
                 }
                 break;
             }
             else {
-                cout << "Неизвестная команда. :help для справки\n";
+                cout << "ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї ГЄГ®Г¬Г Г­Г¤Г . :help Г¤Г«Гї Г±ГЇГ°Г ГўГЄГЁ\n";
             }
         }
         else {
-            // строка не команда — добавляем в буфер (append)
+            // Г±ГІГ°Г®ГЄГ  Г­ГҐ ГЄГ®Г¬Г Г­Г¤Г  вЂ” Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Гў ГЎГіГґГҐГ° (append)
             buffer.push_back(line);
             dirty = true;
         }
     }
 
-    cout << "Выход.\n";
+    cout << "Г‚Г»ГµГ®Г¤.\n";
     return 0;
 }
